@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const generateUniqueId = require('../utils/generateUniqueId');
 const connection = require('../database/connection');
 
 //exporta um objeto com os metodos
@@ -13,7 +13,7 @@ module.exports = {
     async create(request, response){
         const {name, email, whatsapp, city, uf} = request.body; //request body
 
-        const id = crypto.randomBytes(4).toString('HEX'); //criação que uma id criptografada
+        const id = generateUniqueId(); //criação que uma id criptografada
 
         await connection('ongs').insert({
             id,
